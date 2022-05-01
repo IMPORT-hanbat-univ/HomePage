@@ -21,15 +21,15 @@ var meetingRouter = require('./routes/meeting');
 // 프로젝트
 var projectRouter = require('./routes/project');
 // 웹
-var webRouter = require('./routes/web');
+var webRouter = require('./routes/webs');
 // 모바일
-var mobileRouter = require('./routes/mobile');
+var mobileRouter = require('./routes/mobiles');
 // 데이터 분석
-var dataAnalysisRouter = require('./routes/dataAnalysis');
+var dataAnalysisRouter = require('./routes/dataanalies');
 // AI
-var aiRouter = require('./routes/ai');
+var aiRouter = require('./routes/ais');
 // 질문 게시판
-var questionRouter = require('./routes/question');
+var questionRouter = require('./routes/questions');
 // 지원서 작성
 var applyRouter = require('./routes/apply');
 // 게시글

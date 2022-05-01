@@ -138,7 +138,7 @@
                 <div class="project-cards">
                     <!-- 프로젝트 게시물 개별 -> 한번에 6개 보여줌-->
                         <div class="project-card-component">
-                            <a class="project-views" href="<%= process.env.SERVER_HOST %>/post/<%=data[i]._id%>?category=<%=data[i].category%>">
+                            <a class="project-views" href="<%= process.env.SERVER_HOST %>/post/<%=data[i].id%>?category=<%=data[i].category%>">
                                 <img src="../images/project.png" alt="" class="project-thumbnail">
                                 <p class="name"><%= data[i].title %></p>
                                 <p class="time">2022</p>

@@ -2,11 +2,11 @@ require('dotenv').config();
 const env = process.env;
  
 const development = {
-  username: env.RDS_USERNAME,
+  username: "root",
   //env.MYSQL_USERNAME은 불러오고자 하는 데이터의 키값이므로 자유롭게 이름설정이 가능하다.
-  password: env.RDS_PASSWORD,
-  database: env.RDS_NAME,
-  host: env.RDS_HOSTNAME,
+  password: null,
+  database: "importhomepage",
+  host: "127.0.0.1",
   dialect: "mysql",
   //port: env.MYSQL_PORT
 };
@@ -14,7 +14,7 @@ const development = {
 const production = {
   username: env.RDS_USERNAME,
   password: env.RDS_PASSWORD,
-  database: "AWS-RDS",
+  database: env.RDS_NAME,
   host: env.RDS_HOSTNAME,
   dialect: "mysql",
   //port: env.MYSQL_PORT
