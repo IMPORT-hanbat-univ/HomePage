@@ -14,7 +14,7 @@ db.Sequelize = Sequelize;
 
 db.Web = require('./web')(sequelize, Sequelize);
 db.Mobile = require('./mobile')(sequelize, Sequelize);
-db.Data = require('./data')(sequelize, Sequelize);
+db.Data = require('./dataanaly')(sequelize, Sequelize);
 db.Ai = require('./ai')(sequelize, Sequelize);
 db.Question = require('./question')(sequelize, Sequelize);
 

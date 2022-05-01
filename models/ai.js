@@ -8,6 +8,10 @@ module.exports = (sequelize, DataTypes) => {
 			type: DataTypes.TEXT('medium'),
 			allowNull: true,
 		},
+		category :{
+			type: DataTypes.STRING(100),
+			allowNull: false,
+		},
 		id_name: {
 			type: DataTypes.STRING(100),
 			allowNull: false,
@@ -15,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
 		created_at: {
 			type: DataTypes.DATE,
 			allowNull: false,
-			defaultValue : DataTypes.NOW,
+			defaultValue: sequelize.literal('now()'),
 		},
         R_degree:{
             type: DataTypes.INTEGER,

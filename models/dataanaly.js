@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-	return sequelize.define('data',{
+	return sequelize.define('dataanalies',{
 		title: {
 			type: DataTypes.STRING(20),
 			allowNull: false,
@@ -7,6 +7,10 @@ module.exports = (sequelize, DataTypes) => {
 		content: {
 			type: DataTypes.TEXT('medium'),
 			allowNull: true,
+		},
+		category :{
+			type: DataTypes.STRING(100),
+			allowNull: false,
 		},
 		id_name: {
 			type: DataTypes.STRING(100),
