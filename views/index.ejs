@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>   
+    <link href="../fontawesome-free-5.15.4-web/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+  <title>IMPORT</title>
+ 
+</head>
+<body>
+    <!-- 상단 메뉴 바, 어느 페이지건 다 복사 붙여넣기를 해야함 -->
+    <header>
+        <nav>
+            <div class="menu-button">
+                <i class="fas fa-bars open-menu" onclick="openMenu()"></i>
+                <i class="fas fa-times close-menu" onclick="closeMenu()"></i>
+            </div>
+          <div class="logo">
+              <h1 style="cursor: pointer;" onclick="location.href='<%= process.env.SERVER_HOST %>/'">IMPORT</h1>
+          </div>
+        <div class="topMenu">
+            <ul class="topMenu-ul">
+              <li><a onclick="OpenSmallMenu(1)">동아리 <span>▼</span></a>
+                <ul id="SmallMenu1">
+                  <li><a href="<%= process.env.SERVER_HOST %>/executive">임원진</a></li>
+                  <li><a href="<%= process.env.SERVER_HOST %>/indroduce">동아리 소개</a></li>
+                  <li><a href="<%= process.env.SERVER_HOST %>/rule">동아리 규칙</a></li>
+                  <li><a href="<%= process.env.SERVER_HOST %>/meeting">회의록</a></li>
+                </ul>
+              </li>
+              <li><a href="<%= process.env.SERVER_HOST %>/project">프로젝트</a></li>
+              <li><a onclick="OpenSmallMenu(2)">Education <span>▼</span></a>
+                <ul id="SmallMenu2">
+                  <li><a href="<%= process.env.SERVER_HOST %>/web">Web</a></li>
+                  <li><a href="<%= process.env.SERVER_HOST %>/mobile">Mobile</a></li>
+                  <li><a href="<%= process.env.SERVER_HOST %>/dataAnalysis">Data Analysis</a></li>
+                  <li><a href="<%= process.env.SERVER_HOST %>/ai">AI</a></li>
+                </ul>
+              <li><a href="<%= process.env.SERVER_HOST %>/question">질문 게시판</a></li>
+
+            </ul>
+        </div>
+      </nav>
+    </header>
+    <script>
+        
+        function openMenu(){
+            $('.topMenu').css('display','block');
+            $('.close-menu').css('display','block');
+            $('.open-menu').css('display','none');
+            $('.topMenu-ul').css('background','black');
+            $('.middle-apply').css('opacity','0.5');
+            $('.footer').css('opacity','0.5');
+        }
+        function closeMenu(){
+            $('.topMenu').css('display','none');
+            $('.topMenu-ul').css('background','none');
+            $('.close-menu').css('display','none');
+            $('.open-menu').css('display','block');
+            $('.middle-apply').css('opacity','1');
+            $('.footer').css('opacity','1');
+            
+        }
+        function OpenSmallMenu(num){
+            var result = '#SmallMenu'+num;
+            $(result).css('dislay','block');
+
+        }
+
+    </script>        
+
+
+      <!-- 중간 부분에 로고와 함께 동아리를 소개하는 부분 -->
+
+
+      <div class="middle-apply">
+          <div class="middle-title">
+            <h1 style="font-style: italic; color: #83ff5c; ">HELLO&nbsp;IMPORT!</h1>
+          </div>
+          
+        <div class="middle-introduce">
+              
+            <div class="import-logo">
+                <img src="./images/import_logo.png">
+            </div>
+            <div class="middle-introduce-text">
+                <div class="middle-introduce-title">
+                  <h1>Import는?</h1>
+                </div>
+                <div class="middle-introduce-content">
+                    <p>
+                        <b class="symbol-color">개발자</b>와 <b class="symbol-color">디자이너</b>
+                        <br> 모두가 함께 성장할 수 있는,<br>
+                        한밭대학교 총동아리 소속 
+                        <br><b class="symbol-color">IT동아리</b>입니다.
+                    </p>
+                </div>
+            </div>
+        </div>
+     <!--
+        윗글과 마찬가지로 동아리에서 하는 일을 소개하는 부분
+        아래 부분을 자동 슬라이드를 이용함 
+        -->
+        <div class="middle-content">
+            <div class="middle-content-title">
+                <h1>어떤걸 하나요?</h1>
+            </div>
+            <div class="middle-content-text">
+                <p><b>IMPORT는 Web, Mobile, Data Analysis, AI</b>를 다룹니다.</p>
+                <p style="font-size: 12px; margin-top: 10px; color: #83ff5c;">*추후에 일정 희망인원이 생긴다면 새로 생성될 수 있습니다.</p>                   
+            </div>
+                <div style="overflow: hidden; position: relative; height: 100px; width: 100%;">
+                    <div class="slide-container">
+                        <div class="slide-box">   
+                            <i style="color: white;" class="fab fa-aws"></i>
+                        </div>
+                        <div class="slide-box">   
+                            <i class="fab fa-java"></i>
+                        </div>
+                        <div class="slide-box">   
+                            <i class="fab fa-python"></i>
+                        </div>
+                        <div class="slide-box">   
+                            <i class="fab fa-android"></i>
+                        </div>
+                        <div class="slide-box">   
+                            <i class="fab fa-swift"></i>
+                        </div>
+                        <div class="slide-box">   
+                            <i class="fab fa-js"></i>
+                        </div>
+                        <div class="slide-box">   
+                            <i class="fab fa-node-js"></i>
+                        </div>
+                        <div class="slide-box">   
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <div class="slide-box">   
+                            <i class="fab fa-html5"></i>
+                        </div>
+                        <div class="slide-box">   
+                            <i class="fab fa-docker"></i>
+                        </div>
+                        <div class="slide-box">   
+                            <i class="fab fa-git"></i>
+                        </div>
+                        <div class="slide-box">   
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <div class="slide-box">   
+                            <i class="fab fa-css3-alt"></i>
+                        </div>
+                        <div class="slide-box">   
+                            <i class="fab fa-react"></i>
+                        </div>
+                        <div class="slide-box">   
+                            <i class="fab fa-ubuntu"></i>
+                        </div>
+                        <div class="slide-box">   
+                            <i class="fab fa-kaggle"></i>
+                        </div>
+                        <div class="slide-box">   
+                            <i class="fab fa-npm"></i>
+                        </div>
+                        <div class="slide-box">   
+                            <i class="fab fa-php"></i>
+                        </div>
+                        <div class="slide-box">   
+                            <i class="fab fa-vuejs"></i>
+                        </div>
+                    </div>
+                </div>
+                <script>
+                    // 자동 슬라이드를 구현항 방법은 setInterver을 사용해서 0.1초 동안 반복하게 적용함,
+                    // 그리고 timer+1을 하여서 0.1초에 1vw를 이동하게끔 설계 후에 transition을 css에서 사용해서 부드럽게 적용
+                    var timer = 0;                
+                    let interval = setInterval(slideshow, 100); 
+                
+                    function slideshow(){ 
+                        $('.slide-container').css('opacity','1');
+                        $('.slide-container').css('transform','translateX(-'+timer+'vw)');
+                        timer = timer+1;
+                        if(timer >= 121){
+                            timer = 0;
+                            $('.slide-container').css('transform','translateX(-'+timer+'vw)');
+                            $('.slide-container').css('opacity','0').delay(400);
+                        }
+                    } 
+                </script>
+            </div>
+            <!-- 지원 자격을 묻는 부분 -->
+          <div class="middle-eligibility">
+              <div class="middle-dligibility-title">
+                  <h1>지원자격은 어떻게 되나요?</h1>
+              </div>
+              <div class="middle-eligibility-image">
+                  <img src="./images/hoho.png">
+              </div>
+              <div class="middle-eligibility-content">
+                  <ul>
+                      <li><span style="color: #83ff5c;"><b>프로그래밍</b></span>에 흥미가 있어요!</li>
+                      <li>다양한 사람들과 <span style="color: #83ff5c;"><b>프로젝트</b></span>를 진행해 보고 싶어요!</li>
+                      <li><b>공모전</b>에 관심 있어요!</li>
+                      <li><span style="color: #83ff5c;"><b>UI, UX 디자이너</b></span>를 희망해요!</li>
+                      <li><span style="color: #83ff5c;"><b>개발자</b></span>가 되고 싶어요!</li>
+                  </ul>
+              </div>
+              <div style="clear: both; display: block;"></div>
+            <div class="apply-btn">
+              <button class="apply" onclick="location.href='https://forms.gle/iAyPQMXTgJhDw5XB9'">신청하기</button>
+            </div> 
+          </div>
+    </div>
+            
+        
+        <!-- 마지막 footer부분 이 부분은 메뉴바와 함께 복사 붙여 넣기 꼭 하기 -->
+    <div class="footer">
+      <div class="sns">
+        <ul class="snss">
+          <li><a href="https://github.com/Import-hanbat"><i style="color: white;" class="fab fa-github"></i></a></li>
+          <li><a href="https://www.instagram.com/import_hanbat/"><i class="fab fa-instagram"></i></a></li>
+          <li><a href="https://www.facebook.com/Import-110047964872044"><i class="fab fa-facebook"></i></a></li>
+        </ul>
+      </div>
+        <div class="copyright">
+            <p>Copyright 2022. Import all right reserved.</p>
+        </div>
+          <div class="address">
+            <p>대전광역시 유성구 동서대로 125</p>
+          </div>
+      </div>
+ 
+    </body>
+</html>
+          
+          
+<!--
+    <div style="overflow: hidden; position: relative; height: 500px; width: 100%;">
+        <div class="slide-container">
+            <div class="slide-box">   
+                <img src="images/bear.jpg">
+            </div>
+            <div class="slide-box">   
+                <img src="images/cat.jpg">
+            </div>
+            <div class="slide-box">   
+                <img src="images/icon-1.jpg">
+            </div>
+        </div>
+        <button id="prev">&lang;</button>
+        <button id="next">&rang;</button>
+    </div>
+-->
+    
+<!--
+    <script>
+//        var count = 0;
+//        $('#next').click(function(){
+//            count = count + 1;
+//            if(count == 3){
+//                count = 0;
+//            }
+//            $('.slide-container').css('transform','translateX(-'+(count*9)+'0vw)');
+//            console.log(count);
+//        });
+//        $('#prev').click(function(){
+//            count = count - 1;
+//            if(count == -1){
+//                count = 2;
+//            }
+//            $('.slide-container').css('transform','translateX(-'+(count*9)+'0vw)');
+//            
+//            console.log(count);
+//        });
+    
+    </script>
+
+-->
+    

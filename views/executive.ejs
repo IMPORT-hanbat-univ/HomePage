@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>   
+    <link href="../fontawesome-free-5.15.4-web/css/all.css" rel="stylesheet">
+
+  <title>IMPORT</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- 상단 메뉴 바, 어느 페이지건 다 복사 붙여넣기를 해야함 -->
+    <header>
+      <nav>
+          <div class="menu-button">
+              <i class="fas fa-bars open-menu" onclick="openMenu()"></i>
+              <i class="fas fa-times close-menu" onclick="closeMenu()"></i>
+          </div>
+        <div class="logo">
+            <h1 style="cursor: pointer;" onclick="location.href='<%= process.env.SERVER_HOST %>'">IMPORT</h1>
+        </div>
+      <div class="topMenu">
+          <ul class="topMenu-ul">
+            <li><a onclick="OpenSmallMenu(1)">동아리 <span>▼</span></a>
+              <ul id="SmallMenu1">
+                <li><a href="<%= process.env.SERVER_HOST %>/executive">임원진</a></li>
+                <li><a href="<%= process.env.SERVER_HOST %>/indroduce">동아리 소개</a></li>
+                <li><a href="<%= process.env.SERVER_HOST %>/rule">동아리 규칙</a></li>
+                <li><a href="<%= process.env.SERVER_HOST %>/meeting">회의록</a></li>
+              </ul>
+            </li>
+            <li><a href="<%= process.env.SERVER_HOST %>/project">프로젝트</a></li>
+            <li><a onclick="OpenSmallMenu(2)">Education <span>▼</span></a>
+              <ul id="SmallMenu2">
+                <li><a href="<%= process.env.SERVER_HOST %>/web">Web</a></li>
+                <li><a href="<%= process.env.SERVER_HOST %>/mobile">Mobile</a></li>
+                <li><a href="<%= process.env.SERVER_HOST %>/dataAnalysis">Data Analysis</a></li>
+                <li><a href="<%= process.env.SERVER_HOST %>/ai">AI</a></li>
+              </ul>
+            <li><a href="<%= process.env.SERVER_HOST %>/question">질문 게시판</a></li>
+          </ul>
+      </div>
+    </nav>
+  </header>
+  <script>
+      
+      function openMenu(){
+          $('.topMenu').css('display','block');
+          $('.close-menu').css('display','block');
+          $('.open-menu').css('display','none');
+          $('.topMenu-ul').css('background','black');
+          $('.middle-apply').css('opacity','0.5');
+          $('.footer').css('opacity','0.5');
+      }
+      function closeMenu(){
+          $('.topMenu').css('display','none');
+          $('.topMenu-ul').css('background','none');
+          $('.close-menu').css('display','none');
+          $('.open-menu').css('display','block');
+          $('.middle-apply').css('opacity','1');
+          $('.footer').css('opacity','1');
+          
+      }
+      function OpenSmallMenu(num){
+          var result = '#SmallMenu'+num;
+          $(result).css('dislay','block');
+
+      }
+
+  </script>        
+        
+
+
+      <!--임원진 소개 간단히~-->
+      <div class="executive-contents">
+        <div class="title">
+          <h2>임원진 소개</h2>
+        </div>
+  
+        <div class="executive-cards-container">
+          <div class="executive-cards">
+            <div class="executive-card-component">
+              <a href class="executive-views">
+                <img src="../images/hoho.png" alt="" class="executive-thumbnail">
+                <div class="executive-box">
+                  <p class="executive-name">진민</p>
+                  <p class="git-link" >
+                    <a href="https://github.com/Import-hanbat" >
+                      <i style="color: white; font-size: 30px;" class="fab fa-github">
+                      </i>
+                    </a>
+                  </p>
+                </div>
+                <div class="position">
+                  <p>회장</p>
+                </div>
+                <div class="introduce">
+                  <p>안녕하세요.</p>
+                </div>
+                
+                <ul class="skill">
+                  <li class="skill-list">HTML</li>
+                  <li class="skill-list">CSS</li>
+                  <li class="skill-list">JS</li>
+                </ul>
+              </a>
+            </div>
+            <div class="executive-card-component">
+              <a href class="executive-views">
+                <img src="../images/hoho.png" alt="" class="executive-thumbnail">
+                <div class="executive-box">
+                  <p class="executive-name">김종혁</p> 
+                  <p class="git-link">
+                    <a href="https://github.com/Import-hanbat">
+                      <i style="color: white; font-size: 30px;" class="fab fa-github"></i>
+                    </a>
+                  </p>
+                </div>
+               <div class="position">
+                 <p>부회장</p>
+              </div>
+              <div class="introduce">
+                <p>안녕하세요.</p>
+              </div>
+                <ul class="skill">
+                  <li class="skill-list">HTML</li>
+                  <li class="skill-list">CSS</li>
+                  <li class="skill-list">JS</li>
+                </ul>
+              </a>
+            </div>
+            <div class="executive-card-component">
+              <a href class="executive-views">
+                <img src="../images/hoho.png" alt="" class="executive-thumbnail">
+                <div>   
+                <p class="executive-name">이유진</p>
+                  <p class="git-link">
+                    <a href="https://github.com/Import-hanbat">
+                      <i style="color: white;" class="fab fa-github"></i>
+                    </a>
+                  </p>
+                </div> 
+                <p class="position">총무</p>
+                <p class="introduce">안녕하세요.</p>
+                <ul class="skill">
+                  <li class="skill-list">HTML</li>
+                  <li class="skill-list">CSS</li>
+                  <li class="skill-list">JS</li>
+                </ul>
+              </a>
+            </div>
+            
+            <div class="executive-card-component">
+              <a href class="executive-views">
+                <img src="../images/hoho.png" alt="" class="executive-thumbnail">
+                <p class="executive-name">조수영</p>  
+                <p class="git-link"><a href="https://github.com/Import-hanbat"><i style="color: white;" class="fab fa-github"></i></a></p>
+                <p class="position">홍보</p>
+                <p class="introduce">안녕하세요.</p>
+                <ul class="skill">
+                  <li class="skill-list">HTML</li>
+                  <li class="skill-list">CSS</li>
+                  <li class="skill-list">JS</li>
+                </ul>
+              </a>
+            </div>
+          </div>
+  
+        </div>        
+      </div>
+                    
+        
+        <!-- 마지막 footer부분 이 부분은 메뉴바와 함께 복사 붙여 넣기 꼭 하기 -->
+    <div class="footer">
+      <div class="sns">
+        <ul class="snss">
+          <li><a href="https://github.com/Import-hanbat"><i style="color: white;" class="fab fa-github"></i></a></li>
+          <li><a href="https://www.instagram.com/import_hanbat/"><i class="fab fa-instagram"></i></a></li>
+          <li><a href="https://www.facebook.com/Import-110047964872044"><i class="fab fa-facebook"></i></a></li>
+        </ul>
+      </div>
+        <div class="copyright">
+            <p>Copyright 2022. Import all right reserved.</p>
+        </div>
+          <div class="address">
+            <p>대전광역시 유성구 동서대로 125</p>
+          </div>
+      </div>
+ 
+    </body>
+</html>
+          
+          
+<!--
+    <div style="overflow: hidden; position: relative; height: 500px; width: 100%;">
+        <div class="slide-container">
+            <div class="slide-box">   
+                <img src="images/bear.jpg">
+            </div>
+            <div class="slide-box">   
+                <img src="images/cat.jpg">
+            </div>
+            <div class="slide-box">   
+                <img src="images/icon-1.jpg">
+            </div>
+        </div>
+        <button id="prev">&lang;</button>
+        <button id="next">&rang;</button>
+    </div>
+-->
+    
+<!--
+    <script>
+//        var count = 0;
+//        $('#next').click(function(){
+//            count = count + 1;
+//            if(count == 3){
+//                count = 0;
+//            }
+//            $('.slide-container').css('transform','translateX(-'+(count*9)+'0vw)');
+//            console.log(count);
+//        });
+//        $('#prev').click(function(){
+//            count = count - 1;
+//            if(count == -1){
+//                count = 2;
+//            }
+//            $('.slide-container').css('transform','translateX(-'+(count*9)+'0vw)');
+//            
+//            console.log(count);
+//        });
+    
+    </script>
+
+-->
+</html>
+          
+          
+<!--
+    <div style="overflow: hidden; position: relative; height: 500px; width: 100%;">
+        <div class="slide-container">
+            <div class="slide-box">   
+                <img src="images/bear.jpg">
+            </div>
+            <div class="slide-box">   
+                <img src="images/cat.jpg">
+            </div>
+            <div class="slide-box">   
+                <img src="images/icon-1.jpg">
+            </div>
+        </div>
+        <button id="prev">&lang;</button>
+        <button id="next">&rang;</button>
+    </div>
+-->
+    
+<!--
+    <script>
+//        var count = 0;
+//        $('#next').click(function(){
+//            count = count + 1;
+//            if(count == 3){
+//                count = 0;
+//            }
+//            $('.slide-container').css('transform','translateX(-'+(count*9)+'0vw)');
+//            console.log(count);
+//        });
+//        $('#prev').click(function(){
+//            count = count - 1;
+//            if(count == -1){
+//                count = 2;
+//            }
+//            $('.slide-container').css('transform','translateX(-'+(count*9)+'0vw)');
+//            
+//            console.log(count);
+//        });
+    
+    </script>
+
+-->
+    
