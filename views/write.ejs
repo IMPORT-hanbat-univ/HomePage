@@ -45,7 +45,7 @@
 
     </div>
 
-  <div contenteditable="true" class="write-contents" data-text="텍스트를 입력하세요." id="editor" >
+  <div contenteditable="true" class="write-contents" data-text="텍스트를 입력하세요." id="editor" onload="img">
 
   </div>
 
@@ -85,9 +85,19 @@
     const files = e.target.files; 
     
     if (!!files){ 
-      uploadImage(files[0]);  
+      // uploadImage(files[0]); 
+      insertImageDate(files[0]);  
     }
   });
+
+  function insertImageDate(file) { 
+    const reader = new FileReader(); 
+    reader.addEventListener('load', function (e) { 
+      focusEditor(); 
+      document.execCommand('insertImage', false, `${reader.result}`); 
+    }); 
+    reader.readAsDataURL(file);
+  }
 
   function uploadImage(file) {
     var formData = new FormData();
@@ -120,16 +130,19 @@
   function focusEditor() { 
     editor.focus({preventScroll: true}); 
   }
+  
 
-  function insertImageData(url){
-    html = '<img src=\''+url+'\' title=\'image\' />';
-    console.log(url);
 
-      img = "<img src='" + url + "'" + '>';
+  // function insertImageData(url){
+  //   html = '<img src=\''+url+'\' title=\'image\' />';
+  //   console.log(url);
 
-      focusEditor(); 
-      document.execCommand('insertHTML', false, html); 
-  }
+  //     img = "<img src='" + url + "'" + '>';
+
+  //     focusEditor(); 
+  //     document.execCommand('insertHTML', false, html); 
+  // }
+  
   
   var category = "";
   var selectBoxChange = function(value){
