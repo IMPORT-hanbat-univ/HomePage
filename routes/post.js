@@ -1,5 +1,4 @@
 var express = require('express');
-var db = require('../modules/db');
 var { Web, Mobile, Data, Ai, Question } = require('../models')
 var router = express.Router();
 

@@ -3,37 +3,40 @@
 <head>
     
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>   
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
     <link href="../fontawesome-free-5.15.4-web/css/all.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>   
+    <title>IMPORT</title>
+    <script src="https://kit.fontawesome.com/4ab7d5f053.js" crossorigin="anonymous"></script>
 
   <title>IMPORT</title>
-  <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
     <!-- 상단 메뉴 바, 어느 페이지건 다 복사 붙여넣기를 해야함 -->
     <header>
       <nav>
           <div class="menu-button">
-              <i class="fas fa-bars"></i>
+              <i class="fas fa-bars open-menu" onclick="openMenu()"></i>
+              <i class="fas fa-times close-menu" onclick="closeMenu()"></i>
           </div>
         <div class="logo">
-            <h1 style="cursor: pointer;" onclick="location.href='<%= process.env.SERVER_HOST %>/'">IMPORT</h1>
+            <h1 style="cursor: pointer;" onclick="location.href='<%= process.env.SERVER_HOST %>'">IMPORT</h1>
         </div>
       <div class="topMenu">
           <ul class="topMenu-ul">
-            <li><a href="<%= process.env.SERVER_HOST %>/">동아리 <span>▼</span></a>
-              <ul>
+            <li><a onclick="OpenSmallMenu(1)">동아리 <span>▼</span></a>
+              <ul id="SmallMenu1">
                 <li><a href="<%= process.env.SERVER_HOST %>/executive">임원진</a></li>
-                <li><a href="<%= process.env.SERVER_HOST %>/indroduce">동아리 소개</a></li>
+                <li><a href="<%= process.env.SERVER_HOST %>/introduce">동아리 소개</a></li>
                 <li><a href="<%= process.env.SERVER_HOST %>/rule">동아리 규칙</a></li>
                 <li><a href="<%= process.env.SERVER_HOST %>/meeting">회의록</a></li>
               </ul>
             </li>
             <li><a href="<%= process.env.SERVER_HOST %>/project">프로젝트</a></li>
-            <li><a href="<%= process.env.SERVER_HOST %>/">Education <span>▼</span></a>
-              <ul>
+            <li><a onclick="OpenSmallMenu(2)">Education <span>▼</span></a>
+              <ul id="SmallMenu2">
                 <li><a href="<%= process.env.SERVER_HOST %>/web">Web</a></li>
                 <li><a href="<%= process.env.SERVER_HOST %>/mobile">Mobile</a></li>
                 <li><a href="<%= process.env.SERVER_HOST %>/dataAnalysis">Data Analysis</a></li>
@@ -44,13 +47,65 @@
       </div>
     </nav>
   </header>
-        
+  <script>
+      
+      function openMenu(){
+          $('.topMenu').css('display','block');
+          $('.close-menu').css('display','block');
+          $('.open-menu').css('display','none');
+          $('.topMenu-ul').css('background','black');
+          $('.introduce-content').css('opacity','0.5');
+          $('.footer').css('opacity','0.5');
+      }
+      function closeMenu(){
+          $('.topMenu').css('display','none');
+          $('.topMenu-ul').css('background','none');
+          $('.close-menu').css('display','none');
+          $('.open-menu').css('display','block');
+          $('.introduce-content').css('opacity','1');
+          $('.footer').css('opacity','1');
+          
+      }
+      function OpenSmallMenu(num){
+          var result = '#SmallMenu'+num;
+          $(result).css('dislay','block');
+
+      }
+
+  </script>
+      <div class="introduce-content">
+        <div class="introudce-title">
+          <h1>안녕하세요 한밭대 it 동아리 <span class="symbol-color">IMPORT</span>입니다</h1>
+        </div>
+        <div class="introduce-img">
+          <img style="max-width:200px; width: 100%;" src="../images/import_logo.png">
+        </div>
+        <p>저희 IMPORT는 python에 다른 라이브러리를 불러오는 import문을 착안해서 만들어졌습니다.</p>
+        <div class="introduce-img">
+          <img style="max-width:400px; width: 100%;" src="../images/introduce.png">
+        </div>
+        <p>Python에서 라이브러리를 불러옴으로 인해서 다양한 코딩을 할 수 있듯, 여러분 모두를 불러옴으로 다방면으로 나아가는 동아리를 만들고자 합니다.</p>
+        <div class="introduce-img">
+          <img style="max-width:400px; width: 100%;" src="../images/introduce1.png">
+        </div>
+        <p>저희 동아리의 목적은 개발자 및 디자이너를 희망하시는 분들을 위해서 취업 준비를 도와드리는 것과 더불어 학교와 대전 지역에 공익을 위해서도 활동하는 것입니다.</p>
+        <br>
+        <p>예전부터 대다수의 활동은 서울에 치중이 되어있는 현상이 있습니다.</p>
+        <div class="introduce-img">
+          <img style="max-width:600px; width: 100%;" src="../images/introduce2.png">
+        </div>
+        <p>다른 분야도 마찬가지지만, 최근에 각광을 받고 있는 코딩, IT 등은 특히 더 심각합니다.</p>
+        <p>코딩 연합 동아리 또한 대부분의 활동을 수도권에서 진행하고 있습니다.</p>
+        <p>저희 동아리는 이를 해결하고자 만들어졌습니다.</p>
+        <p>비 수도권 지역에서도 인적 네트워크를 형성하고, IT에 대한 정보를 가져오며 학생분들에게 나눠주는 것이 저희 동아리 최종 목적지 입니다.</p>
+
+      </div>  
 
 
       <!--동아리 소개 자세히~~-->
-            
+      
         
-        <!-- 마지막 footer부분 이 부분은 메뉴바와 함께 복사 붙여 넣기 꼭 하기 -->
+      <!-- 마지막 footer부분 이 부분은 메뉴바와 함께 복사 붙여 넣기 꼭 하기 -->
     <div class="footer">
       <div class="sns">
         <ul class="snss">
