@@ -12,16 +12,12 @@ module.exports = (sequelize, DataTypes) => {
 			type: DataTypes.STRING(100),
 			allowNull: false,
 		},
-		id_name: {
+		writer: {
 			type: DataTypes.STRING(100),
 			allowNull: false,
 		},
-		created_at: {
-			type: DataTypes.DATE,
-			allowNull: false,
-			defaultValue : DataTypes.NOW,
-		}
 	},{
-		timestamps: false,
+		timestamps: true,
+        paranoid: true,
 	});
 };

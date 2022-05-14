@@ -12,20 +12,16 @@ module.exports = (sequelize, DataTypes) => {
 			type: DataTypes.STRING(100),
 			allowNull: false,
 		},
-		id_name: {
+		writer: {
 			type: DataTypes.STRING(100),
 			allowNull: false,
 		},
-		created_at: {
-			type: DataTypes.DATE,
-			allowNull: false,
-			defaultValue: sequelize.literal('now()'),
-		},
-        R_degree:{
+		R_degree:{
             type: DataTypes.INTEGER,
             allowNull: false,
         }
 	},{
-		timestamps: false,
+		timestamps: true,
+        paranoid: true,
 	});
 };
