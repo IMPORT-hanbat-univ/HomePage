@@ -1,12 +1,20 @@
 var createError = require('http-errors');
 var sequelize = require('./models').sequelize;
 var express = require('express');
+const session = require('express-session');
+
 var path = require('path');
-var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 require('dotenv').config();
+const passport = require('passport'); // passport 모듈 추가
+const flash = require('connect-flash');
 
+
+
+
+
+const passportConfig = require('./passport');
 
 // 메인 홈페이지
 var indexRouter = require('./routes/index');
@@ -36,26 +44,39 @@ var applyRouter = require('./routes/apply');
 var writeRouter = require('./routes/write');
 // db 업로드
 var addRouter = require('./routes/add');
-// 게시글 삭제
-var deleteRouter = require('./routes/delete');
-// 게시글 수정
-var editRouter = require('./routes/edit');
-// 파일 업로드
-var fileRouter = require('./routes/file');
+
+
+var authRouter = require('./routes/auth');
+
 
 var app = express();
-sequelize.sync()
+sequelize.sync();
+passportConfig(passport); // passport 모듈 추가
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+app.use(session({
+  resave : false,
+  saveUninitialized : false,
+  secret : process.env.COOKIE_SECRET,
+  cookie: {
+      httpOnly: true,
+      secure : false,
+  },
+}))
 
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(flash());
+app.use(passport.initialize());// passport 모듈 추가
+app.use(passport.session());// passport 모듈 추가
 
 app.use('/', indexRouter);
 app.use('/executive', executiveRouter);
@@ -71,9 +92,7 @@ app.use('/question', questionRouter);
 app.use('/apply', applyRouter);
 app.use('/write', writeRouter);
 app.use('/add', addRouter);
-app.use('/delete', deleteRouter);
-app.use('/edit', editRouter);
-app.use('/file', fileRouter);
+app.use('/auth', authRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

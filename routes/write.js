@@ -1,19 +1,13 @@
 var express = require('express');
+const { render } = require('../app');
 var router = express.Router();
+const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
 
-try{
-  const pwd = Buffer.from(process.env.PW, "utf8").toString('base64');
-} catch(e){
-  console.log(e)
-  res.send("Error")
-}
+
 /* GET /write */
-router.post('/', function(req, res) {
-  if(pwd.toString("utf8") == Buffer.from(req.body.pwd, "utf8").toString('base64')) {
-    res.render('write');
-  } else {
-    res.redirect('/');
-  }
+router.get('/', isLoggedIn, (req, res,next)=>{
+  res.render('write',{data:req.user});
 });
+
 
 module.exports = router;

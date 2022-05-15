@@ -1,11 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
 	return sequelize.define('project',{
-		project_id: {
-			type: DataTypes.INTEGER,
-            defaultValue: DataTypes.UUIDV4,
-			allowNull: false,
-            primaryKey: true,
-		},
         title: {
 			type: DataTypes.STRINT(50),
 			allowNull: false,
