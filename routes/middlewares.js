@@ -19,8 +19,4 @@ exports.IsMannager = (req,res,next)=>{
     }else{
         res.redirect('/');
     }
-<<<<<<< HEAD:routes/middleware.js
 }
-=======
-}
->>>>>>> feature/ModifiedStructure:routes/middlewares.js
