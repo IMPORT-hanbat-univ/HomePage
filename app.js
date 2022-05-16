@@ -43,7 +43,6 @@ var applyRouter = require('./routes/apply');
 // 게시글 작성
 var writeRouter = require('./routes/write');
 // db 업로드
-var addRouter = require('./routes/add');
 
 
 var authRouter = require('./routes/auth');
@@ -91,7 +90,6 @@ app.use('/ai', aiRouter);
 app.use('/question', questionRouter);
 app.use('/apply', applyRouter);
 app.use('/write', writeRouter);
-app.use('/add', addRouter);
 app.use('/auth', authRouter);
 
 // catch 404 and forward to error handler

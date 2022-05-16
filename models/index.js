@@ -51,7 +51,7 @@ db.Ai.belongsTo(db.User, { foreginKey: 'ai_post_num', targetKey: 'id'});
 db.User.hasMany(db.Question, { foreginKey: 'question_post_num', sourceKey: 'id'});
 db.Question.belongsTo(db.User, { foreginKey: 'question_post_num', targetKey: 'id'});
 
-
+//meeting까지
 
 //N:M관계의 코드
 db.User.belongsToMany(db.JobObj,{ through: 'jobobjectivesconnection' });
