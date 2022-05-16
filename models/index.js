@@ -64,6 +64,4 @@ db.User.belongsToMany(db.Project,{ through: 'projectconnection' });
 db.Project.belongsToMany(db.User,{ through: 'projectconnection' });
 
 
-
-
 module.exports = db;

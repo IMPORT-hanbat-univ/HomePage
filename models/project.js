@@ -1,7 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
 	return sequelize.define('project',{
         title: {
-			type: DataTypes.STRINT(50),
+			type: DataTypes.STRING(50),
 			allowNull: false,
 		},
         end_date: {
@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: true,
         },
         Team_Leader:{
-            type: DataTypes.STRINT(20),
+            type: DataTypes.STRING(20),
             allowNull: false,
         }
 

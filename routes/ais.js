@@ -14,5 +14,20 @@ router.get('/', function(req, res, next){
         })
 });
 
+router.get('/:id', function(req, res) {
+    Ai.findAll({
+        where:{ 
+            id : req.params.id 
+        }
+    })
+    .then((webs)=>{
+        res.render('post',{data : webs});
+    })
+    .catch((err)=>{
+        console.error(err);
+        next(err);
+    })
+});
+
 module.exports = router;
 
