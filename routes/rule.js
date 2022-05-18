@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET /rule */
+/* rule.ejs 출력하기 */
 router.get('/', function(req, res) {
   res.render('rule');
 });
