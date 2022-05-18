@@ -36,20 +36,20 @@ db.Question = require('./question')(sequelize, Sequelize);
 db.Project.hasMany(db.Project, { foreginKey: 'project_post_num', sourceKey: 'id'});
 db.ProjectPost.belongsTo(db.User, { foreginKey: 'project_post_num', targetKey: 'id'});
 
-db.User.hasMany(db.Web, { foreginKey: 'web_post_num', sourceKey: 'id'});
-db.Web.belongsTo(db.User, { foreginKey: 'web_post_num', targetKey: 'id'});
+db.User.hasMany(db.Web, { foreginKey: 'writer_id', sourceKey: 'id'});
+db.Web.belongsTo(db.User, { foreginKey: 'writer_id', targetKey: 'id'});
 
-db.User.hasMany(db.Mobile, { foreginKey: 'mobile_post_num', sourceKey: 'id'});
-db.Mobile.belongsTo(db.User, { foreginKey: 'mobile_post_num', targetKey: 'id'});
+db.User.hasMany(db.Mobile, { foreginKey: 'writer_id', sourceKey: 'id'});
+db.Mobile.belongsTo(db.User, { foreginKey: 'writer_id', targetKey: 'id'});
 
-db.User.hasMany(db.Data, { foreginKey: 'data_post_num', sourceKey: 'id'});
-db.Data.belongsTo(db.User, { foreginKey: 'data_post_num', targetKey: 'id'});
+db.User.hasMany(db.Data, { foreginKey: 'writer_id', sourceKey: 'id'});
+db.Data.belongsTo(db.User, { foreginKey: 'writer_id', targetKey: 'id'});
 
-db.User.hasMany(db.Ai, { foreginKey: 'ai_post_num', sourceKey: 'id'});
-db.Ai.belongsTo(db.User, { foreginKey: 'ai_post_num', targetKey: 'id'});
+db.User.hasMany(db.Ai, { foreginKey: 'writer_id', sourceKey: 'id'});
+db.Ai.belongsTo(db.User, { foreginKey: 'writer_id', targetKey: 'id'});
 
-db.User.hasMany(db.Question, { foreginKey: 'question_post_num', sourceKey: 'id'});
-db.Question.belongsTo(db.User, { foreginKey: 'question_post_num', targetKey: 'id'});
+db.User.hasMany(db.Question, { foreginKey: 'writer_id', sourceKey: 'id'});
+db.Question.belongsTo(db.User, { foreginKey: 'writer_id', targetKey: 'id'});
 
 //meeting까지
 

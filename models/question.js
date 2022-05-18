@@ -12,10 +12,10 @@ module.exports = (sequelize, DataTypes) => {
 			type: DataTypes.STRING(100),
 			allowNull: false,
 		},
-		writer: {
+		file:{
 			type: DataTypes.STRING(100),
 			allowNull: false,
-		},
+		}
 	},{
 		timestamps: true,
         paranoid: true,

@@ -61,12 +61,19 @@ router.get('/:id', isLoggedIn ,(req, res,next)=>{
 });
 //user.id와 작성자 id가 동일시에 수정 가능
 router.get(':/id/edit',isLoggedIn,(req,res,next)=>{
-    
+    if(req.user.id === Web.writer_id){
+
+    }else{
+        redirect('/');
+    }
 })
 //user.id와 작성자 id가 동일시에 삭제 가능 혹은 관리자일때 삭제 가능
 router.get('/:id/delete',IsMannager,isLoggedIn,(req,res,next)=>{
-    
+    if(req.user.id === Web.writer_id){
 
+    }else{
+        redirect('/');
+    }
 })
 //edit, delete 기능 구현을 이쪽에서 하기
 
