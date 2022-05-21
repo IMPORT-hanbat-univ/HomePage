@@ -75,12 +75,36 @@
     <!--상단 게시판 제목-->
     <div class="post">
         <div class="post-category">
-            <h2>마이 페이지</h2>
+            <h2><%=data.nick_name%>님의 페이지</h2>
         </div>
-
-        <div>
-            <label></label>
-        </div>
+        <form action="/mypage/edit" method="post">
+            <div>
+                <label>실명</label><sapn><input type="text" name="realName"></sapn>
+            </div>
+            <div>
+                <label>학과</label><sapn><input type="text" name="department"></sapn>
+            </div>
+            <div>
+                <label>학번</label><sapn><input type="text" name="studentNum"></sapn>
+            </div>
+            <div>
+                <label>전화번호</label><sapn><input type="text" name="phoneNum"></sapn>
+            </div>
+            <div>
+                <label>희망 분야</label><sapn><input type="text" name="jobObjective"></sapn>
+            </div>
+            <div>
+                <label>기술 스택</label><sapn><input type="text" name="techShack"></sapn>
+            </div>
+            <div>
+                <label>깃헙 주소</label><sapn><input type="text" name="githubUrl"></sapn>
+            </div>
+            <div>
+                <label>블로그 주소</label><sapn><input type="text" name="blogName"></sapn>
+            </div>
+            <button type="submit">저장</button>
+        </form>
+    </div>
 
 
         

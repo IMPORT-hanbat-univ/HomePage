@@ -9,6 +9,10 @@ module.exports = (sequelize, DataTypes) => {
 			type: DataTypes.STRING(20),
 			allowNull: false,
 		},
+        real_name:{
+            type: DataTypes.STRING(20),
+			allowNull: true,
+        },
         snsId:{
             type: DataTypes.STRING(30),
             allowNull: true,
@@ -58,7 +62,11 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING(100),
             allowNull: true,
         },
-        notion_url:{
+        blog_url:{
+            type: DataTypes.STRING(100),
+            allowNull: true,
+        },
+        blog_url:{
             type: DataTypes.STRING(100),
             allowNull: true,
         },
@@ -66,7 +74,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING(100),
             allowNull: true,
         },
-        blog_url:{
+        mannager:{
             type: DataTypes.STRING(100),
             allowNull: true,
         }

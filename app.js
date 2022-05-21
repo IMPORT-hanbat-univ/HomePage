@@ -40,7 +40,8 @@ var aiRouter = require('./routes/ais');
 var questionRouter = require('./routes/questions');
 // 지원서 작성
 var applyRouter = require('./routes/apply');
-
+//마이 페이지
+var mypageRouter = require('./routes/mypages');
 
 
 var authRouter = require('./routes/auth');
@@ -76,18 +77,23 @@ app.use(passport.initialize());// passport 모듈 추가
 app.use(passport.session());// passport 모듈 추가
 
 app.use('/', indexRouter);
+
 app.use('/executive', executiveRouter);
 app.use('/introduce', introduceRouter);
 app.use('/rule', ruleRouter);
 app.use('/meeting', meetingRouter);
+
 app.use('/project', projectRouter);
 app.use('/web', webRouter);
 app.use('/mobile', mobileRouter);
 app.use('/dataAnalysis', dataAnalysisRouter);
 app.use('/ai', aiRouter);
+
 app.use('/question', questionRouter);
+
 app.use('/apply', applyRouter);
 app.use('/auth', authRouter);
+app.use('/mypage', mypageRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
