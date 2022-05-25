@@ -1,6 +1,8 @@
 var express = require('express');
+const user = require('../models/user');
 const { isLoggedIn, isNotLoggedIn, IsMannager } = require('./middlewares');
 var Web = require('../models').Web;
+var User = require('../models').User;
 var router = express.Router();
 
 /*
@@ -9,12 +11,26 @@ var router = express.Router();
     View인 list.ejs에 data라는 변수로 데이터 전송시킨다.
 */
 router.get('/', async(req, res, next)=>{
-    Web.findAll()
-        .then((webs)=>{
+    Web.findAll({
+        wherer : Web.user_id == User.id,
+        include: User
+    })
+        .then((webs, users)=>{
             res.render('list',{data : webs});
+            res.status(200).json({
+                "title" : webs.title,
+                "category" : webs.category,
+                "content" : webs.content,
+                "user" :{
+                    nickname : users.nickname,
+                }
+            })
         })
         .catch((err)=>{
             console.error(err);
+            res.status(404).json({
+                "ErrorMessage": "데이터가 없습니다."
+            })
             next(err);
         })
 });

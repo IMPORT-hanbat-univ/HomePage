@@ -11,10 +11,15 @@ module.exports = (sequelize, DataTypes) => {
 		category :{
 			type: DataTypes.STRING(100),
 			allowNull: false,
+			defaultValue: "Web",
+		},
+		previmg:{
+			type: DataTypes.STRING(20),
+			allowNull: true,
 		},
 		file:{
 			type: DataTypes.STRING(100),
-			allowNull: false,
+			allowNull: true,
 		}
 	},{
 		timestamps: true,
