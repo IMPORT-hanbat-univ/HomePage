@@ -43,8 +43,10 @@ var applyRouter = require('./routes/apply');
 //마이 페이지
 var mypageRouter = require('./routes/mypages');
 
-
 var authRouter = require('./routes/auth');
+
+//db 및 json 테스트 용 코드
+var dbtestRouter = require('./routes/dbtest');
 
 
 var app = express();
@@ -84,16 +86,19 @@ app.use('/rule', ruleRouter);
 app.use('/meeting', meetingRouter);
 
 app.use('/project', projectRouter);
-app.use('/web', webRouter);
-app.use('/mobile', mobileRouter);
-app.use('/dataAnalysis', dataAnalysisRouter);
-app.use('/ai', aiRouter);
+app.use('/Web', webRouter);
+app.use('/Mobile', mobileRouter);
+app.use('/DataAnalysis', dataAnalysisRouter);
+app.use('/AI', aiRouter);
 
 app.use('/question', questionRouter);
 
 app.use('/apply', applyRouter);
 app.use('/auth', authRouter);
 app.use('/mypage', mypageRouter);
+
+//db 및 json 테스트 용 코드
+app.use('/dbtest', dbtestRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

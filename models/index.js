@@ -1,9 +1,24 @@
-const fs = require('fs');
-const path = require('path');
 const Sequelize = require('sequelize');
 
 const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.js')[env];
+
+//회원 정보 테이블
+const User = require('./user');
+const JobObj = require('./jobobjective');
+const TechStack = require('./techstack');
+
+//프로젝트 테이블
+const Project = require('./project');
+const ProjectPost = require('./projectpost');
+
+//각 카테고리 별 페이지
+const Web = require('./web');
+const Mobile = require('./mobile');
+const Data = require('./dataanaly');
+const Ai = require('./ai');
+const Question = require('./question');
+
 const db = {};
 
 const sequelize = new Sequelize(
@@ -11,57 +26,55 @@ const sequelize = new Sequelize(
   )
 
 db.sequelize = sequelize;
-db.Sequelize = Sequelize;
 
-db.User = require('./user')(sequelize,Sequelize);
-db.JobObj = require('./jobobjective')(sequelize,Sequelize);
-db.TechStack = require('./techstack')(sequelize, Sequelize);
+//회원 정보 테이블
+db.User = User;
+db.JobObj = JobObj;
+db.TechStack = TechStack;
+
+//프로젝트 테이블
+db.Project = Project;
+db.ProjectPost = ProjectPost;
+
+//각 카테고리 페이지
+db.Web = Web;
+db.Mobile = Mobile;
+db.Ai = Ai;
+db.Data = Data;
+db.Question = Question;
+
+//회원 정보 테이블
+User.init(sequelize);
+JobObj.init(sequelize);
+TechStack.init(sequelize);
+
+//프로젝트 테이블
+Project.init(sequelize);
+ProjectPost.init(sequelize);
+
+//각 카테고리 페이지
+Web.init(sequelize);
+Mobile.init(sequelize);
+Ai.init(sequelize);
+Data.init(sequelize);
+Question.init(sequelize);
 
 
+User.associate(db);
+JobObj.associate(db);
+TechStack.associate(db);
 
-db.Project = require('./project')(sequelize,Sequelize);
-db.ProjectPost = require('./projectpost')(sequelize,Sequelize);
+//프로젝트 테이블
+Project.associate(db);
+ProjectPost.associate(db);
 
+//각 카테고리 페이지
+Web.associate(db);
+Mobile.associate(db);
+Ai.associate(db);
+Data.associate(db);
+Question.associate(db);
 
-db.Web = require('./web')(sequelize, Sequelize);
-db.Mobile = require('./mobile')(sequelize, Sequelize);
-db.Data = require('./dataanaly')(sequelize, Sequelize);
-db.Ai = require('./ai')(sequelize, Sequelize);
-db.Question = require('./question')(sequelize, Sequelize);
-
-//1:1관계 코드
-
-//1:N관계 코드
-
-db.Project.hasMany(db.Project, { foreginKey: 'project_post_num', sourceKey: 'id'});
-db.ProjectPost.belongsTo(db.User, { foreginKey: 'project_post_num', targetKey: 'id'});
-
-db.User.hasMany(db.Web, { foreginKey: 'writer_id', sourceKey: 'id'});
-db.Web.belongsTo(db.User, { foreginKey: 'writer_id', targetKey: 'id'});
-
-db.User.hasMany(db.Mobile, { foreginKey: 'writer_id', sourceKey: 'id'});
-db.Mobile.belongsTo(db.User, { foreginKey: 'writer_id', targetKey: 'id'});
-
-db.User.hasMany(db.Data, { foreginKey: 'writer_id', sourceKey: 'id'});
-db.Data.belongsTo(db.User, { foreginKey: 'writer_id', targetKey: 'id'});
-
-db.User.hasMany(db.Ai, { foreginKey: 'writer_id', sourceKey: 'id'});
-db.Ai.belongsTo(db.User, { foreginKey: 'writer_id', targetKey: 'id'});
-
-db.User.hasMany(db.Question, { foreginKey: 'writer_id', sourceKey: 'id'});
-db.Question.belongsTo(db.User, { foreginKey: 'writer_id', targetKey: 'id'});
-
-//meeting까지
-
-//N:M관계의 코드
-db.User.belongsToMany(db.JobObj,{ through: 'jobobjectivesconnection' });
-db.JobObj.belongsToMany(db.User,{ through: 'jobobjectivesconnection' });
-
-db.User.belongsToMany(db.TechStack,{ through: 'techstackconnection' });
-db.TechStack.belongsToMany(db.User,{ through: 'techstackconnection' });
-
-db.User.belongsToMany(db.Project,{ through: 'projectconnection' });
-db.Project.belongsToMany(db.User,{ through: 'projectconnection' });
 
 
 module.exports = db;

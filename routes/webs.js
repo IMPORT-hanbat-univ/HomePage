@@ -11,28 +11,25 @@ var router = express.Router();
     View인 list.ejs에 data라는 변수로 데이터 전송시킨다.
 */
 router.get('/', async(req, res, next)=>{
-    Web.findAll({
-        wherer : Web.user_id == User.id,
-        include: User
-    })
-        .then((webs, users)=>{
+    Web.findAll()
+    .then((webs)=>{
             res.render('list',{data : webs});
-            res.status(200).json({
-                "title" : webs.title,
-                "category" : webs.category,
-                "content" : webs.content,
-                "user" :{
-                    nickname : users.nickname,
-                }
-            })
-        })
-        .catch((err)=>{
+            // res.status(200).json({
+            //     "title" : webs.title,
+            //     "category" : webs.category,
+            //     "content" : webs.content,
+            //     "user" :{
+            //         nickname : users.nickname,
+            //     }
+            // })
+    })
+    .catch((err)=>{
             console.error(err);
-            res.status(404).json({
-                "ErrorMessage": "데이터가 없습니다."
-            })
-            next(err);
+        res.status(404).json({
+            "ErrorMessage": "데이터가 없습니다."
         })
+        next(err);
+    })
 });
 /*
     url에 /web/write 가 get이 적용 될시에
@@ -43,11 +40,27 @@ router.get('/', async(req, res, next)=>{
 */
 router.get('/write', isLoggedIn,(req,res,next)=>{
     if(req.user.degree >= 3){
-        res.render('write', { data:req.user });
+        res.render('write', { data : req.user });
     }else{
         res.redirect('/webs', { message: '권한이 없습니다.' });
     }
 })
+
+router.post('/', isLoggedIn, async(req, res, next)=>{
+    console.log(req.user.id);
+    Web.create(
+    {
+        title : req.body.title,
+        content : req.body.content,
+        userId : req.user.id,
+    }).then(()=>{
+        
+        res.redirect('/meeting', {message: '혹시 전송 되니..?'})
+    }).catch((err)=>{
+        console.error(err);
+        next(err);
+    });
+});
 /*
     url에 /web/:id 가 get이 적용 될시에
     로그인이 되어있을 때와 권한이 1이상 일 때 페이지를 열수있다.
@@ -58,20 +71,23 @@ router.get('/write', isLoggedIn,(req,res,next)=>{
 */
 router.get('/:id', isLoggedIn ,(req, res,next)=>{
     if(req.user.degree >= 1){
-        Web.findOne({
+    const data = Web.findOne({
             where:{ 
                 id : req.params.id 
-            }
+            },
+            include: [{
+                model: User
+            }]
         })
-        .then((webs)=>{
-            res.render('post',{data : webs});
+        .then((webs,users)=>{
+            res.render('post', {data : webs, user : users});
         })
         .catch((err)=>{
             console.error(err);
             next(err);
         })
     }else{
-        res.redirect('/webs', { message: '권한이 없습니다.' });
+        res.redirect('/webs');
     }
     
 });
@@ -92,5 +108,6 @@ router.get('/:id/delete',IsMannager,isLoggedIn,(req,res,next)=>{
     }
 })
 //edit, delete 기능 구현을 이쪽에서 하기
+
 
 module.exports = router;

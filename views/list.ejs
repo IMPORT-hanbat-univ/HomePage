@@ -133,12 +133,12 @@
         <!--상단 제목 ~ 하단 Load more-->
         <div class="project-cards-container">
             
-                <% for (var i = 0; i< data.length;i++){ %>
+                <% for (var i = 0; i< data.length; i++){ %>
                 <!--프로젝트 게시물 전체-->
                 <div class="project-cards">
                     <!-- 프로젝트 게시물 개별 -> 한번에 6개 보여줌-->
                         <div class="project-card-component">
-                            <a class="project-views" href="<%= process.env.SERVER_HOST %>/post/<%=data[i].id%>?category=<%=data[i].category%>">
+                            <a class="project-views" href="<%= process.env.SERVER_HOST %>/<%=data[i].category%>/<%=data[i].id%>">
                                 <img src="../images/project.png" alt="" class="project-thumbnail">
                                 <p class="name"><%= data[i].title %></p>
                                 <p class="time">2022</p>
