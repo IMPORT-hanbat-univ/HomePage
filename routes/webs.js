@@ -11,9 +11,18 @@ var router = express.Router();
     View인 list.ejs에 data라는 변수로 데이터 전송시킨다.
 */
 router.get('/', async(req, res, next)=>{
-    Web.findAll()
+    Web.findAll({
+        attributes:["title","content","category","id"],
+        include:{
+            model: User,
+            attributes:[
+                "nick_name",
+            ]
+        }
+    })
     .then((webs)=>{
             res.render('list',{data : webs});
+            console.log(webs.User.nick_name);
             // res.status(200).json({
             //     "title" : webs.title,
             //     "category" : webs.category,
@@ -26,10 +35,33 @@ router.get('/', async(req, res, next)=>{
     .catch((err)=>{
             console.error(err);
         res.status(404).json({
-            "ErrorMessage": "데이터가 없습니다."
+            "message": "데이터가 없습니다."
         })
         next(err);
     })
+});
+router.get('/:id', isLoggedIn ,(req, res,next)=>{
+    if(req.user.degree >= 1){
+    Web.findOne({
+            where:{ 
+                id : req.params.id 
+            },
+            include: {
+                model: User,
+                attributes: [ "nick_name" ]
+            }
+        })
+        .then((web)=>{
+            res.render('post', {data : web});
+        })
+        .catch((err)=>{
+            console.error(err);
+            next(err);
+        })
+    }else{
+        res.redirect('/web');
+    }
+    
 });
 /*
     url에 /web/write 가 get이 적용 될시에
@@ -69,28 +101,7 @@ router.post('/', isLoggedIn, async(req, res, next)=>{
     만약 degree가 0이하면, 이 post페이지로 redirect한다.
 
 */
-router.get('/:id', isLoggedIn ,(req, res,next)=>{
-    if(req.user.degree >= 1){
-    const data = Web.findOne({
-            where:{ 
-                id : req.params.id 
-            },
-            include: [{
-                model: User
-            }]
-        })
-        .then((webs,users)=>{
-            res.render('post', {data : webs, user : users});
-        })
-        .catch((err)=>{
-            console.error(err);
-            next(err);
-        })
-    }else{
-        res.redirect('/webs');
-    }
-    
-});
+
 //user.id와 작성자 id가 동일시에 수정 가능
 router.get(':/id/edit',isLoggedIn,(req,res,next)=>{
     if(req.user.id === Web.writer_id){

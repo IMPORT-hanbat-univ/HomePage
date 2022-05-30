@@ -3,7 +3,7 @@ const Sequelize = require('sequelize');
 module.exports = class Web extends Sequelize.Model{
 	static init(sequelize){
 		return super.init({
-			Job_Objectives: {
+			jobobjective: {
 				type: Sequelize.STRING(20),
 				allowNull: false,
 			},

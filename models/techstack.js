@@ -3,7 +3,7 @@ const Sequelize = require('sequelize');
 module.exports = class Web extends Sequelize.Model{
 	static init(sequelize){
 		return super.init({
-			Tech_Stack: {
+			teckstack: {
 				type: Sequelize.STRING(20),
 				allowNull: false,
 			},
@@ -12,7 +12,7 @@ module.exports = class Web extends Sequelize.Model{
 			timestamps: true,
 			underscored: false,
 			modelName: 'TechStack',
-			tableName: 'tackstacks',
+			tableName: 'teckstacks',
 			paranoid: true,
 			charset: 'utf8',
 			collate: 'utf8_general_ci',

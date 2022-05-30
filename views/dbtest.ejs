@@ -107,9 +107,11 @@
     </script>  
 
     <div>
-        <% for (var i = 0; i< data.length; i++){ %>
-            <h1><%=data[i].title%></h1>
-            <h1><%-data[i].content%></h1>
+        <% if(data){%>
+            <% for (var i = 0; i< data.length; i++){ %>
+                <h1><%=data[i].title%></h1>
+                <h1><%-data[i].content%></h1>
+            <% } %>
         <% } %>
     </div>
     <div><!--web 카테고리 데이터 input, delete-->
@@ -123,7 +125,24 @@
     <div>
         <!--기술스택 input-->
         <form action="/dbtest/techstack" method="post">
-            <label>기술스택</label><input type="text" id="techstack" name="techstack"/>
+            <label>기술스택</label>
+            <select name="techstack">
+                <option value="nodejs">NodeJS</option>
+                <option value="react">React</option>
+                <option value="html">HTML</option>
+                <option value="vue">Vue</option>
+                <option value="spring">Spring</option>
+                <option value="sequelize">Sequelize</option>
+                <option value="awsec2">AWS EC2</option>
+                <option value="awss3">AWS S3</option>
+                <option value="css">CSS</option>
+                <option value="django">Django</option>
+                <option value="pandas">Pandas</option>
+                <option value="ios">iOS</option>
+                <option value="android">Android</option>
+                <option value="typescript">TypeScript</option>
+                <option value="opencv">OpenCV</option>
+            </select>
             <button type="submit">저장!!</button>
         </form>
     </div>
